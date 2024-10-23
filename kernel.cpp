@@ -106,10 +106,10 @@ void terminal_write(const char* data, size_t size)
 
 void terminal_writestring(const char* data)
 {
-	terminal_initialize();
+	terminal_write(data, strlen(data));
 }
 
-void kernel_mail(void)
+extern "C" void kernel_main(void)
 {
 	terminal_initialize();
 	terminal_writestring("Hello, kernel world!\n");

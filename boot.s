@@ -12,11 +12,11 @@ search for this signature in the first 8 KiB of the kernel file, aligned at a
 32-bit boundary. The signature is in its own section so the header can be
 forced to be within the first 8 KiB of the kernel file.
 */
-
 .section .multiboot
 .align 4
 .long MAGIC
 .long FLAGS
+.long CHECKSUM
 
 /*
 The multiboot standard does not define the value of the stack pointer register
@@ -30,9 +30,8 @@ System V ABI standard and de-facto extensions. The compiler will assume the
 stack is properly aligned and failure to align the stack will result in
 undefined behavior.
 */
-
 .section .bss
-.algin 16
+.align 16
 stack_bottom:
 .skip 16384 # 16 KiB
 stack_top:
@@ -42,7 +41,6 @@ The linker script specifies _start as the entry point to the kernel and the
 bootloader will jump to this position once the kernel has been loaded. It
 doesn't make sense to return from this function as the bootloader is gone.
 */
-
 .section .text
 .global _start
 .type _start, @function
@@ -86,7 +84,7 @@ _start:
 	stack since (pushed 0 bytes so far), so the alignment has thus been
 	preserved and the call is well defined.
 	*/
-	call kernel_main	
+	call kernel_main
 
 	/*
 	If the system has nothing more to do, put the computer into an
@@ -108,4 +106,4 @@ _start:
 Set the size of the _start symbol to the current location '.' minus its start.
 This is useful when debugging or when you implement call tracing.
 */
-.size _start, . - _start
+.size _start, . - _start
