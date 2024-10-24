@@ -1,4 +1,4 @@
-### HOW TO MAKE CHANGES ###
+## HOW TO MAKE CHANGES ##
 After making changes to the boot.s file:
 - run `i686-elf-as boot.s -o boot.o`
 
@@ -13,10 +13,13 @@ To verify multiboot:
 - then run `echo $?` 0 = sucess; 1 = failed
 
 To build the iso file:
-- run this series of commands ```mkdir -p isodir/boot/grub
+- run this series of commands
+```
+mkdir -p isodir/boot/grub
 cp myos.bin isodir/boot/myos.bin
 cp grub.cfg isodir/boot/grub/grub.cfg
-grub-mkrescue -o myos.iso isodir ```
+grub-mkrescue -o myos.iso isodir 
+```
 
 
-### BOOT WITH qemu-system-i386 -cdrom myos.iso ###
+## BOOT WITH `qemu-system-i386 -cdrom myos.iso` ##
