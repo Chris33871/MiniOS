@@ -1,3 +1,5 @@
+# VERY SMALL OPERATING SYSTEM
+
 ## HOW TO MAKE CHANGES ##
 After making changes to the boot.s file:
 - run `i686-elf-as boot.s -o boot.o`
