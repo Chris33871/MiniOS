@@ -1,4 +1,4 @@
-## HOW TO MAKE CHANGES ##
+## MAKING CHANGES ##
 After making changes to the boot.s file:
 - run `i686-elf-as boot.s -o boot.o`
 
@@ -18,8 +18,14 @@ To build the iso file:
 mkdir -p isodir/boot/grub
 cp myos.bin isodir/boot/myos.bin
 cp grub.cfg isodir/boot/grub/grub.cfg
-grub-mkrescue -o myos.iso isodir 
+grub2-mkrescue -o myos.iso isodir 
 ```
 
 Boot using QEMU with the command:
 - `qemu-system-i386 -cdrom myos.iso`
+
+
+### Useful information:
+boot.s - kernel entry point that sets up the processor environment
+kernel.c - your actual kernel routines
+linker.ld - for linking the above files
