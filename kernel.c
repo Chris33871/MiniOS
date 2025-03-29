@@ -1,6 +1,8 @@
 /*TODO:
+ * VGA text mode is deprecated - Ask Grub to set up a framebuffer using appropriate Multiboot flags or call VESA VBE yourself
  * Add scrolling feature for when the screen fills up 
  * Add line break feature
+ * Render ASCII art
 */
 #include <stdbool.h>
 #include <stddef.h>
@@ -109,7 +111,7 @@ void terminal_writestring(const char* data)
 	terminal_write(data, strlen(data));
 }
 
-extern "C" void kernel_main(void)
+void kernel_main(void)
 {
 	terminal_initialize();
 	terminal_writestring("Hello, kernel world!\n");
